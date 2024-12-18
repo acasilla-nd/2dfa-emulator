@@ -39,6 +39,31 @@ def readIn():
                 x=input()
         return (states,first,finals,moves)
 
+def readInFile():
+        fileName = input("File Name: ")
+        f = open(fileName, "r")
+        lines = f.readlines()
+        for i in range(len(lines)):
+                lines[i] = lines[i][:-1]
+        print(lines)
+        print(lines[1])
+        
+        states=lines[0].split(",")
+        first=lines[1]
+        finals=lines[2].split(",")
+        moves={}
+        for x in lines[3:]:
+                print(x)
+                x=x.split("->")
+                q1,w1,w2=x[0].split(",")
+                q2,w3,w4=x[1].split(",")
+                if(q1 not in moves):
+                        moves[q1]={}
+                if(w1 not in moves[q1]):
+                        moves[q1][w1]={}
+                moves[q1][w1][w2]=[q2,w3,w4]
+        return (states,first,finals,moves)
+
 def run(machine,word):
         n=len(word)
         dirs={"L":-1,"S":0,"R":1}
@@ -70,7 +95,7 @@ def run(machine,word):
                         return False #no valid transition
         return True
 
-machine=readIn()
+machine=readInFile()
 while(True):
         word=input("Enter in a word to check if it is accepted\n")
         res=run(machine,word)
