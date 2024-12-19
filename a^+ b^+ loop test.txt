@@ -1,0 +1,11 @@
+q1,q2,q3,q4
+q1
+q3
+q1,a,a->q1,R,S
+q1,b,a->q2,R,S
+q2,b,a->q2,R,S
+q2,_,a->q3,R,S
+q2,a,a->q4,L,S
+q4,a,a->q4,L,S
+q4,b,a->q4,L,S
+q4,_,a->q1,R,S
