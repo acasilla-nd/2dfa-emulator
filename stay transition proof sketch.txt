@@ -1,0 +1,11 @@
+The idea behind the proof for why 2dfas are not as powerful without stay transitions is as follows:
+Assume that there were some conversion between 2dfas with stay transitions and those without that preserved the movement and checks
+(which is pretty much necessary for it to be an actual conversion, because otherwise you could just reduce the original 2dfa to skip those
+checks and you would have a valid 2dfa with stay transitions for the problem again)
+If you want to simulate the stay transition while the other head moves, you have to have some movement that changes the relative parity of the tape heads
+because they will always be either both odd or both even if they both have to move 1 at a time. The only way to keep one still is by having it touch
+the edge of the tape and attempt to move into it. But if the tape heads are at some arbitrary locations n and m which which are greater than the
+number of states in the 2dfa without stay transitions (possible for an input of arbitrarily large length), then the 2dfa cannot keep track of the current
+position using enumeration of states, and it cannot write to the tape to keep track of its original position. So it will not be able to go back after
+touching the edge of the state.
+Therefore, 2dfas without stay transitions are not as powerful and cannot simulate a 2dfa with stay transitions.
