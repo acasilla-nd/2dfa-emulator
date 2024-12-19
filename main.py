@@ -64,8 +64,9 @@ def readInFile():
                 moves[q1][w1][w2]=[q2,w3,w4]
         return (states,first,finals,moves)
 
-def run(machine,word):
+def run(machine,word,killLoop=True):
         n=len(word)
+        seen=set() #if we are ever in the same state with the same head positions, we are in a neverending loop and can kill and reject
         dirs={"L":-1,"S":0,"R":1}
         states,first,finals,moves=machine
 
@@ -77,6 +78,8 @@ def run(machine,word):
         h2=1
         state=first
         print("state:",state,"- head 1:",tape[h1],"- head2:",tape[h2])
+        key=h1+h2*n+states.index(state)*n*n #can make index more efficient by using dict if you want
+        seen.add(key)
         while(state not in finals):
                 try:
                         state,d1,d2=moves[state][tape[h1]][tape[h2]]
@@ -91,6 +94,11 @@ def run(machine,word):
                         elif(h2>1+n):
                                 h2=1+n
                         print("state:",state,"- head 1:",tape[h1],"- head2:",tape[h2])
+                        key=h1+h2*n+states.index(state)*n*n
+                        if(killLoop and key in seen):
+                                print("Loop reached")
+                                return False
+                        seen.add(key)
                 except KeyError:
                         return False #no valid transition
         return True
