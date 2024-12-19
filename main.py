@@ -45,15 +45,12 @@ def readInFile():
         lines = f.readlines()
         for i in range(len(lines)):
                 lines[i] = lines[i][:-1]
-        print(lines)
-        print(lines[1])
         
         states=lines[0].split(",")
         first=lines[1]
         finals=lines[2].split(",")
         moves={}
         for x in lines[3:]:
-                print(x)
                 x=x.split("->")
                 q1,w1,w2=x[0].split(",")
                 q2,w3,w4=x[1].split(",")
@@ -103,11 +100,13 @@ def run(machine,word,killLoop=True):
                         return False #no valid transition
         return True
 
-machine=readInFile()
-while(True):
-        word=input("Enter in a word to check if it is accepted\n")
-        res=run(machine,word)
-        if(res):
-                print("accept")
-        else:
-                print("reject")
+
+if __name__ == '__main__':
+        machine=readInFile()
+        while(True):
+                word=input("Enter in a word to check if it is accepted\n")
+                res=run(machine,word)
+                if(res):
+                        print("accept")
+                else:
+                        print("reject")
