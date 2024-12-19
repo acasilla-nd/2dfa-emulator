@@ -74,8 +74,8 @@ def run(machine,word,killLoop=True):
         h1=1 #starts on first non-blank
         h2=1
         state=first
-        print("state:",state,"- head 1:",tape[h1],"- head2:",tape[h2])
-        key=h1+h2*n+states.index(state)*n*n #can make index more efficient by using dict if you want
+        print("state:",state,"- head 1:",h1,tape[h1],"- head2:",h2,tape[h2])
+        key=h1+h2*(n+2)+states.index(state)*(n+2)*(n+2) #can make index more efficient by using dict if you want
         seen.add(key)
         while(state not in finals):
                 try:
@@ -90,8 +90,8 @@ def run(machine,word,killLoop=True):
                                 h2=0
                         elif(h2>1+n):
                                 h2=1+n
-                        print("state:",state,"- head 1:",tape[h1],"- head2:",tape[h2])
-                        key=h1+h2*n+states.index(state)*n*n
+                        print("state:",state,"- head 1:",h1,tape[h1],"- head2:",h2,tape[h2])
+                        key=h1+h2*(n+2)+states.index(state)*(n+2)*(n+2)
                         if(killLoop and key in seen):
                                 print("Loop reached")
                                 return False
