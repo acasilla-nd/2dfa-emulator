@@ -1,0 +1,14 @@
+3
+q1,q2,q3,q4,q5,q6
+q1
+q6
+q1,a,a,a->q1,S,R,R
+q1,a,b,b->q2,S,S,R
+q2,a,b,b->q2,S,S,R
+q2,a,b,c->q3,S,S,S
+q3,a,b,c->q3,S,R,R
+q3,a,c,c->q4,R,L,S
+q3,a,c,_->q5,R,S,S
+q4,a,b,c->q4,S,L,S
+q4,a,a,c->q3,S,R,S
+q5,b,c,_->q6,S,S,S
